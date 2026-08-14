@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-body text-slate-900;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  body {
+    @apply bg-surface-off;
+  }
+  :focus-visible {
+    outline: 2px solid #3654F0;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Evidence Trace motif: a connecting line/dot system used to visually
+     link Claim -> Evidence -> Repository -> Verification throughout the
+     product (timelines, skill detail pages, interview packs). */
+  .trace-line {
+    @apply relative pl-6;
+  }
+  .trace-line::before {
+    content: '';
+    @apply absolute left-[5px] top-1 bottom-1 w-px bg-brand-blue/30;
+  }
+  .trace-node {
+    @apply absolute left-0 top-1 w-2.5 h-2.5 rounded-full border-2 border-brand-blue bg-white;
+  }
+  .trace-node--filled {
+    @apply bg-brand-blue;
+  }
+
+  .badge-strong {
+    @apply inline-flex items-center gap-1 rounded-full bg-evidence-strong/10 text-evidence-strong px-2.5 py-1 text-xs font-medium;
+  }
+  .badge-moderate {
+    @apply inline-flex items-center gap-1 rounded-full bg-evidence-moderate/10 text-evidence-moderate px-2.5 py-1 text-xs font-medium;
+  }
+  .badge-weak {
+    @apply inline-flex items-center gap-1 rounded-full bg-evidence-weak/10 text-evidence-weak px-2.5 py-1 text-xs font-medium;
+  }
+  .badge-none {
+    @apply inline-flex items-center gap-1 rounded-full bg-evidence-none/10 text-evidence-none px-2.5 py-1 text-xs font-medium;
+  }
+
+  .card {
+    @apply bg-surface rounded-lg border border-slate-100 shadow-sm;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-brand-blue text-white px-4 py-2.5 text-sm font-medium hover:bg-brand-violet transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-slate-300 text-slate-900 px-4 py-2.5 text-sm font-medium hover:border-brand-blue hover:text-brand-blue transition-colors;
+  }
+}
