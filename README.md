@@ -1,191 +1,493 @@
+Yes. You want **one single copyable block**, not multiple separate blocks. Here is the complete README in one block:
+
+````markdown
 # SkillProof
 
-**Turn technical claims into verifiable evidence.**
+### Turn technical claims into verifiable evidence.
 
-SkillProof is a full-stack web application for evidence-based technical
-skill verification. Candidates connect real GitHub activity and get
-traceable, explainable evidence for their claimed skills. Recruiters
-evaluate candidates against job requirements using that evidence instead
-of relying on resumes and claims alone.
+SkillProof is a full-stack web application that helps verify technical skill claims using observable GitHub repository evidence.
 
-## Core principle: deterministic evidence first, AI second
+Instead of relying only on self-reported skills in resumes, SkillProof analyzes repository signals such as programming languages, dependencies, topics, README content, and activity to generate traceable technical evidence.
 
+---
+
+## 🔗 Live Demo / GitHub
+
+**Live Application:**  
+https://skillproof-ivory.vercel.app/
+
+**GitHub Repository:**  
+https://github.com/Basanagouda-2006/skillproof
+
+**Backend:**  
+https://skillproof-27vc.onrender.com
+
+**API Health Check:**  
+https://skillproof-27vc.onrender.com/api/health
+
+---
+
+## 🎯 Problem
+
+Technical resumes often depend heavily on self-reported skills.
+
+A candidate may claim skills such as:
+
+- React
+- Node.js
+- MongoDB
+- Python
+
+However, a resume alone does not provide much evidence supporting those claims.
+
+SkillProof addresses this by analyzing observable GitHub repository signals and connecting them with technical skill claims.
+
+The goal is not to replace technical interviews, but to provide a transparent evidence layer that can support technical evaluation.
+
+---
+
+## 🚀 Features
+
+### Candidate Features
+
+- User registration and login
+- JWT-based authentication
+- Candidate profile management
+- GitHub username integration
+- GitHub repository analysis
+- Programming language detection
+- Dependency and technology detection
+- Repository topic analysis
+- README technology analysis
+- Deterministic skill evidence
+- Evidence reports
+- Skill-gap identification
+- Evidence-based interview preparation
+- Shareable candidate profiles
+
+### Recruiter Features
+
+- Recruiter authentication
+- Role-based access control
+- Job creation and management
+- Job requirement detection
+- Candidate discovery
+- Candidate/job matching
+- Candidate comparison
+- Evidence-based candidate evaluation
+- Private recruiter notes
+- Interview evidence packs
+
+### AI Features
+
+Gemini is used as an optional assistance layer for:
+
+- Explaining verified evidence
+- Summarizing skill gaps
+- Generating evidence-grounded interview questions
+
+AI does not create or invent repository evidence.
+
+If Gemini is unavailable, the core deterministic evidence system continues to work.
+
+---
+
+## 🔄 How It Works
+
+```text
+GitHub Username
+      ↓
+Repository Data
+      ↓
+Repository Analysis
+      ↓
+Signal Extraction
+      ↓
+Deterministic Evidence Engine
+      ↓
+Skill Evidence
+      ↓
+Optional AI Explanation
+      ↓
+Reports / Matching / Interview Preparation
+````
+
+The evidence engine uses deterministic, rule-based logic to evaluate repository signals.
+
+### Evidence Levels
+
+| Level           | Meaning                              |
+| --------------- | ------------------------------------ |
+| **STRONG**      | Strong supporting repository signals |
+| **MODERATE**    | Meaningful but incomplete evidence   |
+| **WEAK**        | Limited supporting evidence          |
+| **NO EVIDENCE** | No supported evidence detected       |
+
+Evidence is traceable to the repository and supporting signals used by the evidence engine.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Router
+* Axios
+* Recharts
+* Lucide React
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT
+* bcryptjs
+* express-validator
+
+### APIs
+
+* GitHub REST API
+* Gemini API
+
+### Deployment
+
+* Vercel
+* Render
+* MongoDB Atlas
+
+---
+
+## 🏗️ Architecture
+
+```text
+┌──────────────────────────────┐
+│      React + Vite            │
+│      TypeScript Frontend     │
+│                              │
+│ Pages / Components / Context │
+│ Services / Routing / UI      │
+└──────────────┬───────────────┘
+               │
+               │ REST API
+               ↓
+┌──────────────────────────────┐
+│      Node.js + Express       │
+│                              │
+│ Authentication              │
+│ Authorization               │
+│ Validation                  │
+│ GitHub Integration           │
+│ Evidence Engine              │
+│ Matching                     │
+│ Reports                      │
+│ AI Integration               │
+└──────────┬──────────┬────────┘
+           │          │
+           ↓          ↓
+     ┌──────────┐  ┌──────────────┐
+     │ MongoDB  │  │ GitHub REST  │
+     │  Atlas   │  │     API      │
+     └──────────┘  └──────┬───────┘
+                           │
+                           ↓
+                    ┌──────────────┐
+                    │ Gemini API   │
+                    │  Optional    │
+                    └──────────────┘
 ```
-Real GitHub data → Normalization → Deterministic evidence engine
-   → Evidence result → Optional AI explanation → Reports / matching / interview prep
-```
 
-- The evidence engine (`backend/src/services/evidenceEngine.js`) is pure,
-  deterministic, rule-based logic. It never calls an AI model.
-- AI (Gemini) is used **only** to explain evidence that has already been
-  verified, generate evidence-grounded interview questions, and summarize
-  gaps. It cannot invent repositories, technologies, activity, or scores.
-- If the Gemini API key is missing or the API call fails, the entire
-  application continues to work — the UI clearly shows "AI unavailable"
-  and falls back to the deterministic evidence alone.
+---
 
-See [`docs/evidence-engine.md`](docs/evidence-engine.md) for the exact,
-documented evidence-level and match-score formulas.
+## 🖼️ Screenshots
 
-## Features
+### Landing Page
 
-- Real GitHub repository analysis (languages, dependencies, topics, README)
-- Deterministic evidence engine with 4 evidence levels: STRONG, MODERATE, WEAK, NO_EVIDENCE
-- Every evidence item is traceable to a specific repository and signal
-- Evidence reports with history, optionally explained by Gemini
-- Job postings with deterministic requirement detection
-- Candidate/job matching with a documented, transparent scoring formula
-- Side-by-side candidate comparison for recruiters
-- Evidence-grounded "Interview Evidence Pack" with AI-assisted questions
-- Private recruiter notes, never visible to candidates
-- Opt-in shareable public candidate profiles with selective visibility
-- Full JWT authentication with bcrypt password hashing and role-based
-  authorization enforced on the backend
+![Landing Page](docs/screenshots/landing.png)
 
-## Tech stack
+### Dashboard
 
-**Frontend:** React, Vite, TypeScript, Tailwind CSS, React Router, Axios, Lucide React, Recharts
-**Backend:** Node.js, Express, MongoDB, Mongoose, JWT, bcryptjs
-**External APIs:** GitHub REST API, Gemini API (optional)
+![Dashboard](docs/screenshots/dashboard.png)
 
-## Project structure
+### GitHub Analysis
 
-```
+![GitHub Analysis](docs/screenshots/github-analysis.png)
+
+### Evidence Report
+
+![Evidence Report](docs/screenshots/evidence-report.png)
+
+### Recruiter Dashboard
+
+![Recruiter Dashboard](docs/screenshots/recruiter-dashboard.png)
+
+---
+
+## 📁 Project Structure
+
+```text
 skillproof/
+│
 ├── backend/
-│   └── src/
-│       ├── config/       # env + MongoDB connection
-│       ├── controllers/  # request handlers
-│       ├── middleware/   # auth, error handling, validation
-│       ├── models/       # Mongoose schemas
-│       ├── routes/       # Express routers
-│       ├── services/     # evidence engine, GitHub, Gemini, matching
-│       ├── validators/   # express-validator rules
-│       └── utils/        # token, response, async helpers
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── validators/
+│   │   └── utils/
+│   │
+│   ├── .env.example
+│   └── package.json
+│
 ├── frontend/
-│   └── src/
-│       ├── components/   # shared UI (evidence badges, evidence trace, layout)
-│       ├── context/      # AuthContext
-│       ├── layouts/      # public/candidate/recruiter shells
-│       ├── pages/        # public, auth, candidate, recruiter pages
-│       ├── services/     # API client
-│       └── types/        # shared TypeScript types
-└── docs/
-    └── evidence-engine.md
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── types/
+│   │
+│   ├── .env.example
+│   └── package.json
+│
+├── docs/
+│   ├── evidence-engine.md
+│   └── screenshots/
+│
+├── .gitignore
+└── README.md
 ```
 
-## Database models
+---
 
-`User`, `Repository`, `SkillEvidence`, `EvidenceReport`, `Job`,
-`CandidateJobMatch`, `RecruiterNote`, `ShareableProfile` — see each file
-in `backend/src/models/` for the full schema.
+## 🔐 Security
 
-## API overview
+SkillProof uses backend-focused security controls including:
 
-All responses use a consistent envelope:
+* JWT authentication
+* bcrypt password hashing
+* Role-based authorization
+* Protected API routes
+* Resource ownership checks
+* Request validation
+* Authentication rate limiting
+* CORS protection
+* Helmet security headers
+* Environment-based secret management
 
-```json
-{ "success": true, "data": {} }
-{ "success": false, "message": "Meaningful error" }
+Sensitive credentials are stored in backend environment variables and are not exposed to the frontend.
+
+Examples include:
+
+```text
+MONGO_URI
+JWT_SECRET
+GITHUB_TOKEN
+GEMINI_API_KEY
 ```
 
-| Base path            | Purpose                                   |
-|-----------------------|--------------------------------------------|
-| `/api/auth`           | register, login, me, logout               |
-| `/api/users`          | profile updates, password change          |
-| `/api/github`         | connect GitHub, analysis status           |
-| `/api/repositories`   | list/view analyzed repositories           |
-| `/api/evidence`       | list/view skill evidence                  |
-| `/api/reports`        | generate/list/view evidence reports       |
-| `/api/jobs`           | job CRUD, active job listing              |
-| `/api/matches`        | compute/compare matches, interview packs  |
-| `/api/candidates`     | recruiter-facing candidate lookup         |
-| `/api/notes`          | private recruiter notes                   |
-| `/api/share`          | shareable profile settings + public view  |
-| `/api/health`         | real backend/DB status                    |
+---
 
-## Authentication & security
+## ⚙️ Local Setup
 
-- Passwords hashed with bcrypt (12 salt rounds); hashes are never returned
-- JWT-based sessions, verified on every protected request
-- Role-based authorization (`candidate` / `recruiter`) enforced server-side
-- Ownership checks on every mutating request (a recruiter can only edit
-  their own jobs/notes; a candidate can only edit their own profile)
-- Rate limiting on auth endpoints and the general API
-- `helmet` for standard security headers, CORS restricted to the configured client URL
-- Secrets (`MONGO_URI`, `JWT_SECRET`, `GITHUB_TOKEN`, `GEMINI_API_KEY`) live
-  only in backend environment variables and are never sent to the frontend
+### 1. Clone the Repository
 
-## Environment variables
-
-**`backend/.env`** (copy from `backend/.env.example`):
-
+```bash
+git clone https://github.com/Basanagouda-2006/skillproof.git
+cd skillproof
 ```
+
+### 2. Backend
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file:
+
+```env
 PORT=5000
 NODE_ENV=development
-MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/skillproof
-JWT_SECRET=replace_with_a_long_random_string
+
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_jwt_secret
 JWT_EXPIRES_IN=7d
-GITHUB_TOKEN=            # optional but recommended (higher GitHub API rate limit)
-GEMINI_API_KEY=          # optional — app works fully without it
+
+GITHUB_TOKEN=
+GEMINI_API_KEY=
+
 CLIENT_URL=http://localhost:5173
 ```
 
-**`frontend/.env`** (copy from `frontend/.env.example`):
+Start the backend:
 
+```bash
+npm run dev
 ```
+
+Backend:
+
+```text
+http://localhost:5000
+```
+
+### 3. Frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+```
+
+Create `.env`:
+
+```env
 VITE_API_URL=http://localhost:5000/api
 ```
 
-## Local development
+Start the frontend:
 
 ```bash
-# Backend
-cd backend
-npm install
-cp .env.example .env   # fill in MONGO_URI and JWT_SECRET at minimum
-npm run dev             # starts on http://localhost:5000
-
-# Frontend (in a separate terminal)
-cd frontend
-npm install
-cp .env.example .env
-npm run dev              # starts on http://localhost:5173
+npm run dev
 ```
 
-Visit `http://localhost:5173`, register as a candidate, connect a real
-GitHub username under **GitHub** in the sidebar, and evidence will be
-generated automatically from your public repositories.
+Frontend:
 
-## Deployment
+```text
+http://localhost:5173
+```
 
-- **Frontend** → Vercel or Netlify (build command `npm run build`, output `dist/`)
-- **Backend** → Render (start command `npm start`)
-- **Database** → MongoDB Atlas
+> Never commit real `.env` files or secret credentials to GitHub.
 
-Set the same environment variables from `.env.example` in each platform's
-dashboard. Update `CLIENT_URL` on the backend and `VITE_API_URL` on the
-frontend to your deployed URLs.
+---
 
-## Known limitations
+## 🌐 Environment Variables
 
-- Evidence is based only on observable, public repository signals (languages,
-  dependencies, topics, README mentions, activity recency) — it does not and
-  cannot measure code quality, correctness, or professional mastery.
-- Private repositories are not analyzed unless a GitHub token with the
-  appropriate scope is configured, and even then the current implementation
-  only fetches public repositories via the standard `/users/:username/repos`
-  endpoint.
-- The skill vocabulary (`backend/src/services/skillRules.js`) is a fixed,
-  curated list. Extending it means adding a new rule entry, not training a model.
-- AI explanations depend on Gemini API availability; when it's down or
-  unconfigured, the product degrades gracefully to evidence-only output
-  rather than failing.
+### Backend
 
-## Future improvements
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRES_IN=7d
+GITHUB_TOKEN=
+GEMINI_API_KEY=
+CLIENT_URL=http://localhost:5173
+```
 
-- OAuth-based GitHub connection (instead of username-only) to safely support
-  private repository analysis with proper scoped consent
-- Commit-level evidence (frequency, authorship) in addition to repository-level signals
-- Pagination and server-side filtering for large candidate/job lists
-- Automated test suite (unit tests for the evidence engine and matching formulas)
+### Frontend
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+### Production
+
+**Frontend:**
+
+```env
+VITE_API_URL=https://skillproof-27vc.onrender.com/api
+```
+
+**Backend:**
+
+```env
+NODE_ENV=production
+CLIENT_URL=https://skillproof-ivory.vercel.app
+```
+
+Real secrets must only be configured through the deployment platform's environment variable settings.
+
+---
+
+## 🚀 Deployment
+
+### Frontend — Vercel
+
+**Build Command:**
+
+```text
+npm run build
+```
+
+**Output Directory:**
+
+```text
+dist
+```
+
+**Production API URL:**
+
+```env
+VITE_API_URL=https://skillproof-27vc.onrender.com/api
+```
+
+### Backend — Render
+
+**Build Command:**
+
+```text
+npm install
+```
+
+**Start Command:**
+
+```text
+npm start
+```
+
+Configure the backend environment variables in Render.
+
+### Database
+
+MongoDB Atlas is used as the production database.
+
+---
+
+## ⚠️ Limitations
+
+* GitHub evidence does not prove professional mastery or code quality.
+* The current implementation primarily focuses on observable public GitHub repository data.
+* The skill vocabulary is based on curated technical rules.
+* AI explanations depend on Gemini availability.
+* AI is optional and is not required for deterministic evidence generation.
+
+---
+
+## 🔮 Future Improvements
+
+* GitHub OAuth with scoped permissions
+* Private repository support
+* Commit-level contribution analysis
+* Pull request analysis
+* Expanded technical skill rules
+* Automated unit and integration testing
+* Advanced candidate filtering
+* More detailed repository activity analysis
+
+---
+
+## 👨‍💻 Author
+
+**Basanagouda D**
+
+BCA Student | Full-Stack Developer
+
+**GitHub:**
+[https://github.com/Basanagouda-2006](https://github.com/Basanagouda-2006)
+
+**Live Project:**
+[https://skillproof-ivory.vercel.app/](https://skillproof-ivory.vercel.app/)
+
